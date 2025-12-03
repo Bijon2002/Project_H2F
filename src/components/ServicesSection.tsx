@@ -1,53 +1,54 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Code, Smartphone, Cloud, ShoppingCart, BarChart3, Bot } from "lucide-react";
+import { Link } from "react-router-dom";
 
-import serviceWeb from "@/assets/service-web.jpg";
-import serviceMobile from "@/assets/service-mobile.jpg";
-import serviceCloud from "@/assets/service-cloud.jpg";
-import serviceEcommerce from "@/assets/service-ecommerce.jpg";
-import serviceSalesforce from "@/assets/service-salesforce.jpg";
-import serviceAi from "@/assets/service-ai.jpg";
-
+// Tech-themed realistic images from Unsplash
 const services = [
   {
-    image: serviceWeb,
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80",
+    icon: Code,
     title: "Web Development",
     description:
       "Custom websites and web applications built with cutting-edge technologies. React, Next.js, and modern frameworks for exceptional user experiences.",
     features: ["Responsive Design", "SEO Optimized", "Fast Performance"],
   },
   {
-    image: serviceMobile,
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80",
+    icon: Smartphone,
     title: "Mobile Development",
     description:
       "Native and cross-platform mobile apps for iOS and Android. Flutter and React Native solutions that deliver seamless mobile experiences.",
     features: ["iOS & Android", "Cross-Platform", "Native Performance"],
   },
   {
-    image: serviceCloud,
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80",
+    icon: Cloud,
     title: "Cloud & Hosting",
     description:
       "Scalable cloud infrastructure and reliable hosting solutions. AWS, Azure, and Google Cloud expertise for your business needs.",
     features: ["AWS & Azure", "Auto Scaling", "24/7 Monitoring"],
   },
   {
-    image: serviceEcommerce,
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+    icon: ShoppingCart,
     title: "E-Commerce Solutions",
     description:
       "Complete online store solutions from scratch or with platforms like Shopify. Payment integration, inventory management, and more.",
     features: ["Payment Gateway", "Inventory System", "Analytics"],
   },
   {
-    image: serviceSalesforce,
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
+    icon: BarChart3,
     title: "Salesforce Services",
     description:
       "Expert Salesforce implementation, customization, and integration. CRM solutions that streamline your sales and customer relationships.",
     features: ["Implementation", "Customization", "Integration"],
   },
   {
-    image: serviceAi,
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    icon: Bot,
     title: "AI Agent Development",
     description:
       "Intelligent AI agents and chatbots powered by cutting-edge machine learning. Automate customer service and business processes.",
@@ -60,53 +61,131 @@ export const ServicesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-24 bg-background relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-h2f-blue-50 to-transparent" />
-      <motion.div
-        className="absolute top-1/4 right-0 w-96 h-96 bg-h2f-gold-500/5 rounded-full blur-3xl"
-        animate={{ scale: [1, 1.2, 1], x: [0, -50, 0] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 left-0 w-80 h-80 bg-h2f-blue-500/5 rounded-full blur-3xl"
-        animate={{ scale: [1.2, 1, 1.2], x: [0, 50, 0] }}
-        transition={{ duration: 12, repeat: Infinity }}
-      />
-      
-      <div className="container mx-auto px-4 lg:px-8 relative" ref={ref}>
-        {/* Section Header */}
+    <section id="services" className="py-24 relative overflow-hidden">
+      {/* Tech-themed Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-h2f-blue-900 via-h2f-blue-800 to-h2f-blue-900">
+        {/* Animated Grid Pattern */}
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(245, 185, 66, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(245, 185, 66, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+          }}
+        />
+        
+        {/* Floating Tech Particles */}
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 bg-h2f-gold-500/60 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              y: [0, -30, 0],
+              opacity: [0.3, 1, 0.3],
+              scale: [1, 1.5, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+        
+        {/* Circuit Lines */}
+        <svg className="absolute inset-0 w-full h-full opacity-10">
+          <motion.path
+            d="M0,200 Q200,100 400,200 T800,200"
+            stroke="rgba(245, 185, 66, 0.5)"
+            strokeWidth="1"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 3, repeat: Infinity, repeatType: "loop" }}
+          />
+          <motion.path
+            d="M0,400 Q300,300 600,400 T1200,400"
+            stroke="rgba(245, 185, 66, 0.3)"
+            strokeWidth="1"
+            fill="none"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 4, repeat: Infinity, repeatType: "loop", delay: 1 }}
+          />
+        </svg>
+        
+        {/* Glowing Orbs */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.5 }}
-            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+          className="absolute top-1/4 right-10 w-72 h-72 bg-h2f-gold-500/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.3, 1], x: [0, -30, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-1/4 left-10 w-96 h-96 bg-h2f-blue-400/10 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], x: [0, 30, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
+        
+        {/* Binary Code Effect */}
+        <div className="absolute inset-0 overflow-hidden opacity-5">
+          {[...Array(10)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute text-h2f-gold-500 font-mono text-xs whitespace-nowrap"
+              style={{ left: `${i * 10}%`, top: '-20px' }}
+              animate={{ y: ['0%', '120vh'] }}
+              transition={{
+                duration: 15 + Math.random() * 10,
+                repeat: Infinity,
+                delay: Math.random() * 5,
+                ease: 'linear',
+              }}
+            >
+              {Array(50).fill(null).map(() => Math.round(Math.random())).join('')}
+            </motion.div>
+          ))}
+        </div>
+      </div>
+      
+      <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={ref}>
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <span
+            data-aos="fade-up"
+            className="inline-block px-4 py-1.5 rounded-full bg-h2f-gold-500/20 text-h2f-gold-500 text-sm font-medium mb-4"
           >
             Our Services
-          </motion.span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+          </span>
+          <h2 
+            data-aos="fade-up"
+            data-aos-delay="100"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+          >
             What We <span className="text-gradient-gold">Offer</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p 
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="text-white/70 max-w-2xl mx-auto text-lg"
+          >
             Comprehensive technology solutions tailored to your business needs. 
             From development to deployment, we've got you covered.
           </p>
-        </motion.div>
+        </div>
 
         {/* Services Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
-            <motion.div
+            <div
               key={service.title}
-              initial={{ opacity: 0, y: 50, scale: 0.95 }}
-              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              data-aos="fade-up"
+              data-aos-delay={index * 100}
             >
               <motion.div
                 whileHover={{ y: -12 }}
@@ -122,7 +201,12 @@ export const ServicesSection = () => {
                     whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-card via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-card via-card/50 to-transparent" />
+                  
+                  {/* Service Icon Badge */}
+                  <div className="absolute top-4 left-4 w-12 h-12 rounded-xl gradient-gold flex items-center justify-center shadow-gold">
+                    <service.icon className="w-6 h-6 text-h2f-blue-900" />
+                  </div>
                   
                   {/* Animated Overlay */}
                   <motion.div
@@ -150,33 +234,31 @@ export const ServicesSection = () => {
 
                   {/* Features */}
                   <div className="flex flex-wrap gap-2 mb-5">
-                    {service.features.map((feature, featureIndex) => (
-                      <motion.span
+                    {service.features.map((feature) => (
+                      <span
                         key={feature}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={isInView ? { opacity: 1, x: 0 } : {}}
-                        transition={{ delay: 0.3 + index * 0.1 + featureIndex * 0.05 }}
                         className="px-3 py-1 rounded-full bg-muted text-muted-foreground text-xs font-medium"
                       >
                         {feature}
-                      </motion.span>
+                      </span>
                     ))}
                   </div>
 
                   {/* Learn More Link */}
-                  <motion.a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 text-primary font-medium group/link text-sm"
-                    whileHover={{ x: 5 }}
-                  >
-                    Learn More
-                    <motion.span
-                      animate={{ x: [0, 3, 0] }}
-                      transition={{ duration: 1, repeat: Infinity }}
+                  <motion.div whileHover={{ x: 5 }}>
+                    <Link
+                      to="/services"
+                      className="inline-flex items-center gap-2 text-primary font-medium group/link text-sm"
                     >
-                      <ArrowRight className="w-4 h-4" />
-                    </motion.span>
-                  </motion.a>
+                      Learn More
+                      <motion.span
+                        animate={{ x: [0, 3, 0] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </motion.span>
+                    </Link>
+                  </motion.div>
                 </div>
 
                 {/* Animated Border Glow */}
@@ -196,7 +278,7 @@ export const ServicesSection = () => {
                   }}
                 />
               </motion.div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

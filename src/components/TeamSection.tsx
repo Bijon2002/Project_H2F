@@ -8,34 +8,40 @@ import teamCto from "@/assets/team-cto.jpg";
 import teamCoo from "@/assets/team-coo.jpg";
 import teamCmo from "@/assets/team-cmo.jpg";
 import teamCio from "@/assets/team-cio.jpg";
+import bijonImg from "@/assets/bijon.png";
 
 const teamMembers = [
   {
-    name: "Marisilin Bijosilin",
+    firstName: "MARISILIN",
+    lastName: "BIJON",
     role: "CEO",
     title: "Chief Executive Officer",
-    image: teamCeo,
+    image: bijonImg,
   },
   {
-    name: "Krishan Kavishan",
+    firstName: "KRISHAN",
+    lastName: "KAVISHAN",
     role: "CTO",
     title: "Chief Technology Officer",
     image: teamCto,
   },
   {
-    name: "Jeganathan Digevan",
+    firstName: "JEGANATHAN",
+    lastName: "DIGEVAN",
     role: "COO",
     title: "Chief Operating Officer",
     image: teamCoo,
   },
   {
-    name: "Sivanantharaja Lajithan",
+    firstName: "SIVANANTHARAJA",
+    lastName: "LAJITHAN",
     role: "CMO",
     title: "Chief Marketing Officer",
     image: teamCmo,
   },
   {
-    name: "Manogaran Ahillan",
+    firstName: "MANOGARAN",
+    lastName: "AHILLAN",
     role: "CIO",
     title: "Chief Information Officer",
     image: teamCio,
@@ -47,53 +53,82 @@ export const TeamSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="team" className="py-24 gradient-section relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0">
+    <section id="team" className="py-24 relative overflow-hidden">
+      {/* Tech-themed Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-h2f-blue-900 via-h2f-blue-800 to-h2f-blue-900">
+        {/* Network Nodes Pattern */}
+        <svg className="absolute inset-0 w-full h-full opacity-20">
+          {[...Array(8)].map((_, i) => (
+            <g key={i}>
+              <motion.circle
+                cx={`${15 + i * 12}%`}
+                cy={`${20 + (i % 3) * 25}%`}
+                r="3"
+                fill="rgba(245, 185, 66, 0.5)"
+                animate={{ scale: [1, 1.5, 1], opacity: [0.3, 0.8, 0.3] }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.3 }}
+              />
+              <motion.line
+                x1={`${15 + i * 12}%`}
+                y1={`${20 + (i % 3) * 25}%`}
+                x2={`${25 + i * 10}%`}
+                y2={`${40 + (i % 2) * 20}%`}
+                stroke="rgba(245, 185, 66, 0.2)"
+                strokeWidth="1"
+                initial={{ pathLength: 0 }}
+                animate={{ pathLength: 1 }}
+                transition={{ duration: 2, repeat: Infinity, delay: i * 0.2 }}
+              />
+            </g>
+          ))}
+        </svg>
+        
+        {/* Glowing Orbs */}
         <motion.div
           className="absolute top-40 right-20 w-80 h-80 bg-h2f-gold-500/10 rounded-full blur-3xl"
           animate={{ scale: [1, 1.2, 1], x: [0, -20, 0] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute bottom-40 left-20 w-96 h-96 bg-h2f-blue-500/10 rounded-full blur-3xl"
+          className="absolute bottom-40 left-20 w-96 h-96 bg-h2f-blue-400/10 rounded-full blur-3xl"
           animate={{ scale: [1.2, 1, 1.2], x: [0, 20, 0] }}
           transition={{ duration: 10, repeat: Infinity }}
         />
       </div>
 
-      <div className="container mx-auto px-4 lg:px-8 relative" ref={ref}>
+      <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={ref}>
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+        <div className="text-center mb-16">
+          <span
+            data-aos="fade-up"
+            className="inline-block px-4 py-1.5 rounded-full bg-h2f-gold-500/20 text-h2f-gold-500 text-sm font-medium mb-4"
           >
             Our Team
-          </motion.span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+          </span>
+          <h2 
+            data-aos="fade-up"
+            data-aos-delay="100"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+          >
             Meet the <span className="text-gradient-gold">Founders</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p 
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="text-white/70 max-w-2xl mx-auto text-lg"
+          >
             A passionate team of innovators dedicated to transforming businesses 
             through cutting-edge technology solutions.
           </p>
-        </motion.div>
+        </div>
 
         {/* Team Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-8">
           {teamMembers.map((member, index) => (
-            <motion.div
-              key={member.name}
-              initial={{ opacity: 0, y: 50, rotateY: -20 }}
-              animate={isInView ? { opacity: 1, y: 0, rotateY: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+            <div
+              key={member.firstName + member.lastName}
+              data-aos="zoom-in"
+              data-aos-delay={index * 100}
             >
               <motion.div
                 whileHover={{ y: -12, scale: 1.02 }}
@@ -114,7 +149,7 @@ export const TeamSection = () => {
                   >
                     <img
                       src={member.image}
-                      alt={member.name}
+                      alt={`${member.firstName} ${member.lastName}`}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                     />
                     {/* Overlay on hover */}
@@ -141,19 +176,17 @@ export const TeamSection = () => {
                   </motion.div>
 
                   {/* Role Badge */}
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={isInView ? { scale: 1 } : {}}
-                    transition={{ delay: 0.3 + index * 0.1, type: "spring" }}
+                  <span
                     className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full gradient-gold text-h2f-blue-900 text-xs font-bold shadow-gold"
                   >
                     {member.role}
-                  </motion.span>
+                  </span>
                 </div>
 
                 {/* Name */}
                 <h3 className="text-lg font-bold text-foreground mb-1 group-hover:text-primary transition-colors duration-300 mt-4">
-                  {member.name}
+                  <span className="block">{member.firstName}</span>
+                  <span className="block">{member.lastName}</span>
                 </h3>
 
                 {/* Title */}
@@ -179,7 +212,7 @@ export const TeamSection = () => {
                   </motion.a>
                 </div>
               </motion.div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

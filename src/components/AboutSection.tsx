@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
 import { Target, Eye, Globe, CheckCircle } from "lucide-react";
-import patternBg from "@/assets/pattern-bg.jpg";
 
 const aboutCards = [
   {
@@ -43,60 +42,103 @@ export const AboutSection = () => {
 
   return (
     <section id="about" className="py-24 relative overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0">
-        <img
-          src={patternBg}
-          alt=""
-          className="w-full h-full object-cover opacity-5"
+      {/* Tech-themed Animated Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-h2f-blue-900 via-h2f-blue-800 to-h2f-blue-900">
+        {/* Hexagon Grid Pattern */}
+        <div 
+          className="absolute inset-0 opacity-10"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0l25.98 15v30L30 60 4.02 45V15z' fill='none' stroke='%23f5b942' stroke-width='0.5'/%3E%3C/svg%3E")`,
+            backgroundSize: '60px 60px',
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-h2f-blue-50/50 to-background" />
+        
+        {/* Data Flow Lines */}
+        <svg className="absolute inset-0 w-full h-full">
+          {[...Array(5)].map((_, i) => (
+            <motion.line
+              key={i}
+              x1="0%"
+              y1={`${20 + i * 15}%`}
+              x2="100%"
+              y2={`${30 + i * 12}%`}
+              stroke="rgba(245, 185, 66, 0.1)"
+              strokeWidth="1"
+              strokeDasharray="10 20"
+              initial={{ strokeDashoffset: 0 }}
+              animate={{ strokeDashoffset: -100 }}
+              transition={{ duration: 3, repeat: Infinity, ease: "linear", delay: i * 0.5 }}
+            />
+          ))}
+        </svg>
+        
+        {/* Floating Tech Nodes */}
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-h2f-gold-500/40 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              scale: [1, 1.5, 1],
+              opacity: [0.3, 0.8, 0.3],
+            }}
+            transition={{
+              duration: 2 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 2,
+            }}
+          />
+        ))}
+        
+        {/* Glowing Orbs */}
+        <motion.div
+          className="absolute top-20 left-10 w-72 h-72 bg-h2f-blue-400/10 rounded-full blur-3xl"
+          animate={{ scale: [1, 1.2, 1], x: [0, 30, 0] }}
+          transition={{ duration: 8, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-96 h-96 bg-h2f-gold-500/10 rounded-full blur-3xl"
+          animate={{ scale: [1.2, 1, 1.2], x: [0, -30, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
+        />
       </div>
 
-      {/* Animated Background Elements */}
-      <motion.div
-        className="absolute top-20 left-10 w-72 h-72 bg-h2f-blue-500/10 rounded-full blur-3xl"
-        animate={{ scale: [1, 1.2, 1], x: [0, 30, 0] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-96 h-96 bg-h2f-gold-500/10 rounded-full blur-3xl"
-        animate={{ scale: [1.2, 1, 1.2], x: [0, -30, 0] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-
-      <div className="container mx-auto px-4 lg:px-8 relative" ref={ref}>
+      <div className="container mx-auto px-4 lg:px-8 relative z-10" ref={ref}>
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4"
+        <div className="text-center mb-16">
+          <span
+            data-aos="fade-up"
+            className="inline-block px-4 py-1.5 rounded-full bg-h2f-gold-500/20 text-h2f-gold-500 text-sm font-medium mb-4"
           >
             About Us
-          </motion.span>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">
+          </span>
+          <h2 
+            data-aos="fade-up"
+            data-aos-delay="100"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+          >
             Who We <span className="text-gradient-gold">Are</span>
           </h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
+          <p 
+            data-aos="fade-up"
+            data-aos-delay="200"
+            className="text-white/70 max-w-2xl mx-auto text-lg"
+          >
             Founded in August 2025, H2F is a dynamic technology startup committed to 
             delivering innovative solutions that transform businesses.
           </p>
-        </motion.div>
+        </div>
 
         {/* Cards Grid */}
         <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-16">
           {aboutCards.map((card, index) => (
-            <motion.div
+            <div
               key={card.title}
-              initial={{ opacity: 0, y: 50, rotateX: 20 }}
-              animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
+              data-aos="flip-up"
+              data-aos-delay={index * 150}
             >
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
@@ -121,36 +163,33 @@ export const AboutSection = () => {
                 <h3 className="text-xl font-bold text-foreground mb-3">{card.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{card.description}</p>
               </motion.div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Highlights Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="grid grid-cols-2 md:grid-cols-3 gap-4"
-        >
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           {highlights.map((highlight, index) => (
-            <motion.div
+            <div
               key={highlight}
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ delay: 0.6 + index * 0.1 }}
-              whileHover={{ scale: 1.05, x: 5 }}
-              className="flex items-center gap-3 p-4 rounded-xl bg-card/50 border border-border/30 hover:border-h2f-gold-500/30 transition-all duration-300"
+              data-aos="fade-right"
+              data-aos-delay={index * 100}
             >
               <motion.div
-                whileHover={{ rotate: 360 }}
-                transition={{ duration: 0.5 }}
+                whileHover={{ scale: 1.05, x: 5 }}
+                className="flex items-center gap-3 p-4 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-h2f-gold-500/30 transition-all duration-300"
               >
-                <CheckCircle className="w-5 h-5 text-h2f-gold-500 flex-shrink-0" />
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <CheckCircle className="w-5 h-5 text-h2f-gold-500 flex-shrink-0" />
+                </motion.div>
+                <span className="text-white font-medium text-sm">{highlight}</span>
               </motion.div>
-              <span className="text-foreground font-medium text-sm">{highlight}</span>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

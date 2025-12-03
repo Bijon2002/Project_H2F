@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Code2, Globe, Rocket, Users, Play, ChevronDown } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
+import { Link } from "react-router-dom";
+import introVideo from "@/assets/intro.mp4";
 
 const stats = [
   { icon: Code2, value: "6+", label: "Core Services" },
@@ -12,16 +13,17 @@ const stats = [
 export const HeroSection = () => {
   return (
     <section id="home" className="relative min-h-screen overflow-hidden">
-      {/* Background Image with Overlay */}
+      {/* Background Video with Overlay */}
       <div className="absolute inset-0">
-        <motion.img
-          src={heroBg}
-          alt="Technology Innovation"
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
           className="w-full h-full object-cover"
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 10, ease: "easeOut" }}
-        />
+        >
+          <source src={introVideo} type="video/mp4" />
+        </video>
         <div className="absolute inset-0 bg-gradient-to-b from-h2f-blue-900/90 via-h2f-blue-900/80 to-h2f-blue-900/95" />
       </div>
 
@@ -181,29 +183,35 @@ export const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
-            <motion.a
-              href="#services"
+            <motion.div
               whileHover={{ scale: 1.05, boxShadow: "0 0 40px hsl(45 93% 58% / 0.4)" }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold gradient-gold text-h2f-blue-900 shadow-gold transition-all duration-300 flex items-center justify-center gap-2 group"
             >
-              Explore Services
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
+              <Link
+                to="/services"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold gradient-gold text-h2f-blue-900 shadow-gold transition-all duration-300 flex items-center justify-center gap-2 group"
               >
-                <ArrowRight size={20} />
-              </motion.span>
-            </motion.a>
-            <motion.a
-              href="#contact"
+                Explore Services
+                <motion.span
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                >
+                  <ArrowRight size={20} />
+                </motion.span>
+              </Link>
+            </motion.div>
+            <motion.div
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
-              className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-primary-foreground border-2 border-primary-foreground/30 transition-all duration-300 flex items-center justify-center gap-2"
             >
-              <Play size={18} className="fill-current" />
-              Watch Demo
-            </motion.a>
+              <Link
+                to="/about"
+                className="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold text-primary-foreground border-2 border-primary-foreground/30 transition-all duration-300 flex items-center justify-center gap-2"
+              >
+                <Play size={18} className="fill-current" />
+                Learn More
+              </Link>
+            </motion.div>
           </motion.div>
 
           {/* Stats */}
@@ -249,15 +257,14 @@ export const HeroSection = () => {
           transition={{ delay: 1.5 }}
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
-          <motion.a
-            href="#services"
+          <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 1.5, repeat: Infinity }}
             className="flex flex-col items-center gap-2 text-primary-foreground/50 hover:text-h2f-gold-500 transition-colors cursor-pointer"
           >
             <span className="text-xs uppercase tracking-widest">Scroll Down</span>
             <ChevronDown size={24} />
-          </motion.a>
+          </motion.div>
         </motion.div>
       </div>
     </section>
