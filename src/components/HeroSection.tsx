@@ -2,6 +2,72 @@ import { motion } from "framer-motion";
 import { ArrowRight, Code2, Globe, Rocket, Users, Play, ChevronDown } from "lucide-react";
 import { Link } from "react-router-dom";
 import introVideo from "@/assets/intro.mp4";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Float, Environment, OrbitControls } from "@react-three/drei";
+import React, { useRef, useState } from "react";
+import * as THREE from "three";
+
+// Floating 3D Logo Component
+function FloatingLogo(props: any) {
+  const meshRef = useRef<THREE.Mesh>(null);
+  const [hovered, setHovered] = useState(false);
+  
+  // Rotate the logo continuously
+  useFrame((state, delta) => {
+    if (meshRef.current) {
+      meshRef.current.rotation.y += delta * 0.5;
+      meshRef.current.rotation.x = Math.sin(state.clock.getElapsedTime()) * 0.1;
+    }
+  });
+
+  return (
+    <Float speed={2} rotationIntensity={1} floatIntensity={1}>
+      <mesh
+        ref={meshRef}
+        scale={hovered ? 1.2 : 1}
+        onPointerOver={() => setHovered(true)}
+        onPointerOut={() => setHovered(false)}
+        {...props}
+      >
+        <torusKnotGeometry args={[1, 0.3, 128, 32]} />
+        <meshStandardMaterial 
+          color={hovered ? "#3b82f6" : "#60a5fa"} 
+          roughness={0.1}
+          metalness={0.9}
+        />
+      </mesh>
+    </Float>
+  );
+}
+
+// Interactive 3D Logo Container
+function InteractiveLogo() {
+  return (
+    <div className="w-full h-full rounded-xl overflow-hidden">
+      <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+        <ambientLight intensity={0.5} />
+        <pointLight position={[10, 10, 10]} intensity={1} />
+        <spotLight
+          position={[0, 10, 0]}
+          angle={0.15}
+          penumbra={1}
+          intensity={1}
+          castShadow
+        />
+        
+        <FloatingLogo position={[0, 0, 0]} />
+        
+        <Environment preset="city" />
+        <OrbitControls 
+          enableZoom={true}
+          enablePan={false}
+          maxPolarAngle={Math.PI / 2}
+          minPolarAngle={Math.PI / 4}
+        />
+      </Canvas>
+    </div>
+  );
+}
 
 const stats = [
   { icon: Code2, value: "6+", label: "Core Services" },
@@ -176,6 +242,18 @@ export const HeroSection = () => {
             From web development to AI agents, we're your partner in technological excellence.
           </motion.p>
 
+          {/* 3D Interactive Logo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="flex justify-center my-8"
+          >
+            <div className="w-64 h-64 md:w-80 md:h-80">
+              <InteractiveLogo />
+            </div>
+          </motion.div>
+          
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
