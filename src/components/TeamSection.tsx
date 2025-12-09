@@ -9,6 +9,8 @@ import teamCoo from "@/assets/team-coo.jpg";
 import teamCmo from "@/assets/team-cmo.jpg";
 import teamCio from "@/assets/team-cio.jpg";
 import bijonImg from "@/assets/bijon.png";
+import Digee from "@/assets/digee.jpeg";
+
 
 const teamMembers = [
   {
@@ -30,7 +32,7 @@ const teamMembers = [
     lastName: "DIGEVAN",
     role: "COO",
     title: "Chief Operating Officer",
-    image: teamCoo,
+    image: Digee,
   },
   {
     firstName: "SIVANANTHARAJA",
