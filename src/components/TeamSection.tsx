@@ -10,6 +10,7 @@ import teamCmo from "@/assets/team-cmo.jpg";
 import teamCio from "@/assets/team-cio.jpg";
 import bijonImg from "@/assets/Bijon.jpg";
 import Digee from "@/assets/digee.jpeg";
+import Venu from "@/assets/venu1.png";
 
 
 const teamMembers = [
@@ -47,6 +48,20 @@ const teamMembers = [
     role: "CIO",
     title: "Chief Information Officer",
     image: teamCio,
+  },
+  {
+    firstName: "Venujan",
+    lastName: "Thirugnanam",
+    role: "CSO",
+    title: "Chief Security Officer & Head of Development",
+    image: Venu,
+  },
+  {
+    firstName: "Luxaprathan",
+    lastName: "Nagaratnam",
+    role: "HOM",
+    title: "Head of Marketing & Sales",
+    image: Venu,
   },
 ];
 
