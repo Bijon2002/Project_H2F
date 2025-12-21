@@ -8,7 +8,7 @@ import teamCto from "@/assets/team-cto.jpg";
 import teamCoo from "@/assets/team-coo.jpg";
 import teamCmo from "@/assets/team-cmo.jpg";
 import teamCio from "@/assets/team-cio.jpg";
-import bijonImg from "@/assets/bijon.png";
+import bijonImg from "@/assets/Bijon.jpg";
 import Digee from "@/assets/digee.jpeg";
 
 
