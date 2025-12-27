@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { PageLayout } from "@/components/PageLayout";
 import { Link } from "react-router-dom";
-import conVideo from "@/assets/con.mp4";
+import conVideo from "@/assets/contact.mp4";
 
 // Team member images
 import bijonImg from "@/assets/Bijon.jpg";
