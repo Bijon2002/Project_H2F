@@ -9,6 +9,7 @@ import ServicesPage from "./pages/ServicesPage";
 import AboutPage from "./pages/AboutPage";
 import TeamPage from "./pages/TeamPage";
 import ContactPage from "./pages/ContactPage";
+import CustomCursor from "@/components/CustomCursor";
 
 const queryClient = new QueryClient();
 
@@ -17,6 +18,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <CustomCursor />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
