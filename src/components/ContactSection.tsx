@@ -20,7 +20,7 @@ const contactInfo = [
   {
     icon: Phone,
     title: "Phone",
-    value: "+94 XX XXX XXXX",
+    value: "072 017 2910",
     subtext: "Call us anytime",
   },
   {

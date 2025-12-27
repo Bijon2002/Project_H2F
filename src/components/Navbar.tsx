@@ -53,7 +53,10 @@ export const Navbar = () => {
               className="flex items-center gap-3"
             >
               <img src={h2fLogo} alt="H2F logo" className="w-10 h-10 rounded-lg object-cover shadow-gold" />
-              <span className={`font-bold text-xl hidden sm:block uppercase tracking-wide ${isScrolled ? "bg-gradient-to-r from-h2f-blue-900 via-h2f-blue-700 to-h2f-gold-500 bg-clip-text text-transparent" : "bg-gradient-to-r from-white via-h2f-gold-300 to-h2f-gold-500 bg-clip-text text-transparent"}`}>
+              <span 
+                className={`font-black text-xl hidden sm:block uppercase tracking-wide ${isScrolled ? "bg-gradient-to-r from-h2f-blue-900 via-h2f-blue-700 to-h2f-gold-500 bg-clip-text text-transparent" : "bg-gradient-to-r from-white via-h2f-gold-300 to-h2f-gold-500 bg-clip-text text-transparent"}`}
+                style={{ textShadow: '0 0 1px currentColor' }}
+              >
                 HOST 2 FUSION
               </span>
             </Link>
